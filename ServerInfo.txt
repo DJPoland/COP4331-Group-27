@@ -3,3 +3,8 @@ Admin Username: twentyseven
 Password: TwentySeven27$
 Account Name: Fall2020COP4331Group27
 Server IP Address: 107.180.101.22
+
+
+Shawn Login Info
+Username: Shawn
+Pass: Penguin2020$
