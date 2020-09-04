@@ -8,6 +8,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
     
   <div class="p-3 mb-2 bg-dark text-white"><h4>contacts27</h4></div>
   <title>contacts27 homepage</title>
@@ -16,11 +17,11 @@
     <div class="wrapper fadeInDown">
       <div id="formContent">
         <div class="fadeIn first">
-          <p class="title">please sign in to access.</p>
+          <p class="title">Sign in to Access</p>
         </div>
         <form>
-          <input type="text" id="login" class="fadeIn second" name="login" placeholder="username">
-          <input type="text" id="password" class="fadeIn third" name="login" placeholder="password">
+          <input type="text" id="username" class="fadeIn second" name="username" value="Username" onfocus="clearText(this, 'Username')" onblur="regenerateText(this, 'Username')"/>
+          <input type="text" id="password" class="fadeIn third" name="password" value="Password" onfocus="clearText(this, 'Password')" onblur="regenerateText(this, 'Password')"/>
           <input type="submit" class="fadeIn fourth" value="enter">
         </form>
         </div>
@@ -33,5 +34,6 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script src="js/index.js"></script>
   </body>
 </html>
