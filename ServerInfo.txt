@@ -9,5 +9,6 @@ username: smcchargs@gmail.com
 Pass: TwentySeven27$
 
 Shawn Login Info for DB
-Username: Shawn
+Username: cop4331t_Shawn
 Pass: Penguin2020$
+DB Name: cop4331t_shawnmm1_Group27
