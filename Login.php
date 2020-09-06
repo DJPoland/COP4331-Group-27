@@ -14,7 +14,7 @@
 	} 
 	else
 	{
-		$sql = "SELECT ID,FirstName,LastName FROM Users where Login='" . $inData["login"] . "' and Password='" . $inData["password"] . "'";
+		$sql = "SELECT ID,FirstName,LastName FROM Users where Login='" . $inData["Login"] . "' and Password='" . $inData["Password"] . "'";
 		$result = $conn->query($sql);
 		if ($result->num_rows > 0)
 		{
@@ -27,7 +27,7 @@
 		}
 		else
 		{
-			returnWithError( "No Records Found" );
+			returnWithError( "No Records Found!");
 		}
 		$conn->close();
 	}
