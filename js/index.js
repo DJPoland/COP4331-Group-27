@@ -20,11 +20,11 @@ function doLogin() {
 
     let login = document.getElementById("username").value;
     let password = document.getElementById("password").value;
-    
+
     // TODO: Implement hashing....
     // md5();
 
-	let jsonPayload = '{"Login" : "' + login + '", "Password" : "' + password + '"}';
+    let jsonPayload = '{"Login" : "' + login + '", "Password" : "' + password + '"}';
     let url = urlBase + '/Login.' + extension;
 
     // Connect to API.
@@ -37,15 +37,13 @@ function doLogin() {
     let loginForm = document.getElementById("loginForm");
     loginForm.innerHTML += spinnerHtml;
 
-    try 
-    {
+    try {
         xhr.send(jsonPayload);
 
         let jsonObject = JSON.parse(xhr.responseText);
 
         userId = jsonObject.id;
-        if ( userId < 1 )
-        {
+        if (userId < 1) {
             throw jsonObject.error;
         }
 
@@ -59,9 +57,7 @@ function doLogin() {
 
         // TODO: Create logged in contactManager.html
         window.setTimeout(() => window.location.href = "contactManager.html", 5000);
-    } 
-    catch (err) 
-    {
+    } catch (err) {
         console.log("error!");
         document.getElementById("spinnerHtml").style.display = "none";
         loginForm.innerHTML += `<br/><br/><span> User not found. <span/><br/><span> Please try using another Username/Password. </span><br/><br/>`;
@@ -70,36 +66,30 @@ function doLogin() {
     }
 }
 
-function saveCookie()
-{
-	let minutes = 20;
-	let date = new Date();
-	date.setTime(date.getTime()+(minutes*60*1000));	
-	document.cookie = "firstName=" + firstName + ",lastName=" + lastName + ",userId=" + userId + ";expires=" + date.toGMTString();
+function saveCookie() {
+    let minutes = 20;
+    let date = new Date();
+    date.setTime(date.getTime() + (minutes * 60 * 1000));
+    document.cookie = "firstName=" + firstName + ",lastName=" + lastName + ",userId=" + userId + ";expires=" + date.toGMTString();
 }
 
-function readCookie() 
-{
+function readCookie() {
     // TODO: Read possible cookie.
 }
 
-function doLogout() 
-{
+function doLogout() {
     // TODO: Setup logout functionality.
 }
 
 // Below functions make textboxes smoother to use.
-function clearText(obj, str)
-{
-  if (obj.value == str) 
-  {
-      obj.value = "";
-  }
+function clearText(obj, str) {
+    if (obj.value == str) {
+        obj.value = "";
+    }
 }
-function regenerateText(obj, str)
-{
-  if (obj.value == '')
-  {
-      obj.value = str;
-  }
+
+function regenerateText(obj, str) {
+    if (obj.value == '') {
+        obj.value = str;
+    }
 }
