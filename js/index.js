@@ -11,39 +11,42 @@ let lastName = "";
 
 
 function doLogin() {
+
+    let spinnerHtml = `<div id="spinnerHtml"><div class="spinner-border" role="status"></div><br/><br/><br/><span>Verifying...</span><br/><br/></div>`;
+
     userId = 0;
     firstName = "";
     lastName = "";
 
     let login = document.getElementById("username").value;
     let password = document.getElementById("password").value;
+    
     // TODO: Implement hashing....
     // md5();
-
-    // document.getElementById("enterButton");
 
 	let jsonPayload = '{"Login" : "' + login + '", "Password" : "' + password + '"}';
     let url = urlBase + '/Login.' + extension;
 
+    // Connect to API.
     let xhr = new XMLHttpRequest();
-
     xhr.open("POST", url, false);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+    // Hide the button and display spinner.
+    button.style.display = "none";
+    let loginForm = document.getElementById("loginForm");
+    loginForm.innerHTML += spinnerHtml;
+
     try 
     {
-        console.log(jsonPayload);
         xhr.send(jsonPayload);
 
-        let responseText = xhr.responseText;
-        let jsonObject = JSON.parse(responseText);
-        console.log(jsonObject);
+        let jsonObject = JSON.parse(xhr.responseText);
 
         userId = jsonObject.id;
         if ( userId < 1 )
         {
-            document.getElementById("enterButton")
-                .innerHTML = "User/Password combination incorrect";
-            return;
+            throw jsonObject.error;
         }
 
         firstName = jsonObject.firstName;
@@ -51,12 +54,19 @@ function doLogin() {
 
         saveCookie();
 
+        document.getElementById("spinnerHtml").style.display = "none";
+        loginForm.innerHTML += `<br/><br/><span> User found. Redirecting to Contact Manager...</span><br/><br/>`;
+
         // TODO: Create logged in contactManager.html
-        // window.location.href = "contactManager.html";
+        window.setTimeout(() => window.location.href = "contactManager.html", 5000);
     } 
     catch (err) 
     {
-        document.getElementById("enterButton").innerHTML = err.message;
+        console.log("error!");
+        document.getElementById("spinnerHtml").style.display = "none";
+        loginForm.innerHTML += `<br/><br/><span> User not found. <span/><br/><span> Please try using another Username/Password. </span><br/><br/>`;
+
+        window.setTimeout(() => location.reload(), 5000);
     }
 }
 
