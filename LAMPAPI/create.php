@@ -17,7 +17,7 @@
 	else
 	{
 		$sql = "INSERT INTO Contacts (FirstName, LastName, Phone, Email, UserID) 
-			VALUES(" . $firstName . ", '" . $lastName ."', '" . $phone ."','" . $email ."', '". $userID ."')" ;
+			VALUES('" . $firstName . "', '" . $lastName ."', '" . $phone ."','" . $email ."', '". $userID ."')" ;
 		if( $result = $conn->query($sql) != TRUE )
 		{
 			returnWithError( $conn->error );
