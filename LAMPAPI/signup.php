@@ -11,14 +11,13 @@
 	else
 	{
     $sql = "INSERT INTO Users (FirstName, LastName, Login, Password)
-    VALUES ($inData["firstname"], $inData["lastname"], $inData["login"], $inData["password"])";
+    VALUES ('" . $inData["FirstName"] . "', '" . $inData["LastName"] . "', '" . $inData["Login"] . "', '" . $inData["Password"] . "')";
 
     if ($conn->query($sql) === TRUE) {
-      $retValue = '{firstName":"' . $inData["firstname"] . '","lastName":"' . $inData["lastname"] . '","Login":"' . $inData["login"] . '","Password":"' . $inData["password"] . '","error":""}';
+      $retValue = '{firstName":"' . $inData["FirstName"] . '","lastName":"' . $inData["LastName"] . '","Login":"' . $inData["Login"] . '","Password":"' . $inData["Password"] . '","error":""}';
   		sendResultInfoAsJson( $retValue );
     } else {
-      $retValue = '{"firstName":"","lastName":"","Login":"","Password":"","error":"Sign Up Failed"}';
-  		sendResultInfoAsJson( $retValue );
+      returnWithError( "SIGN UP FAILED! ");
     }
 
 		$conn->close();
@@ -33,6 +32,12 @@
 	{
 		header('Content-type: application/json');
 		echo $obj;
+	}
+
+	function returnWithError ( $err )
+	{
+		$retValue = '{"firstName":"","lastName":"","Login":"","Password":"","error":"' . $err .'"}';
+		sendResultInfoAsJson( $retValue );
 	}
 
 ?>
