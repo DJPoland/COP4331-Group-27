@@ -14,15 +14,26 @@ body {
   padding: 20px;
 }
 
-a {
+a:link {
   color: #FFFFFF;
   display:inline-block;
   text-decoration: none;
-  #font-weight: 400;
+}
+
+a:visited {
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #FFFFFF;
+    text-decoration: none;
 }
 
 p {
+    color: #FFFFFF;
     font-size: 0.5em;
+    opacity: 0.65;
 }
 
 h1 {
@@ -32,6 +43,7 @@ h1 {
   letter-spacing: 2.15px;
   margin: 0px 0px 50px 0px;
   color: #FFFFFF;
+  opacity: 0.65;
 }
 
 
