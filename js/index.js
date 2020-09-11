@@ -1,68 +1,64 @@
-// Attach event listener to button
-const button = document.getElementById('enterButton');
-button.addEventListener('click', doLogin);
 
 let urlBase = 'http://contactlist27.com/LAMPAPI';
 let extension = 'php';
-
 let userId = 0;
 let firstName = "";
 let lastName = "";
+let password = undefined;
+let button = document.getElementById('enterButton');
 
+// Attach event listener to enter button.
+button.addEventListener('click', doLogin);
+
+function sendLoginPayload(jsonPayload, url) {
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", url, false);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+    xhr.send(jsonPayload);
+    let jsonObject = JSON.parse(xhr.responseText);
+    userId = jsonObject.id;
+    if (userId < 1) {
+        throw jsonObject.error;
+    }
+    firstName = jsonObject.firstName;
+    lastName = jsonObject.lastName;
+    saveCookie();
+    window.setTimeout(() => {
+        document.getElementById("spinnerHtml").style.display = "none";
+        password.insertAdjacentHTML('afterend',`<br/><br/><span> User found. Redirecting to Contact Manager...</span>`);
+        window.setTimeout(() => window.location.href = "contactManager.html", 5000);
+    }, 1000);
+}
 
 function doLogin() {
 
-    let spinnerHtml = `<div id="spinnerHtml"><div class="spinner-border" role="status"></div><br/><br/><br/><span>Verifying...</span><br/><br/></div>`;
+    let spinnerHtml = `<br/><br/><div id="spinnerHtml"><div class="spinner-border" role="status"></div><br/><span>Verifying...</span><br/><br/></div>`;
 
     userId = 0;
     firstName = "";
     lastName = "";
 
-    let login = document.getElementById("username").value;
-    let password = document.getElementById("password").value;
-
     // TODO: Implement hashing....
     // md5();
-
-    let jsonPayload = '{"Login" : "' + login + '", "Password" : "' + password + '"}';
+    let loginUser = document.getElementById("username").value;
+    let loginPassword = document.getElementById("password").value;
+    let jsonPayload = '{"Login" : "' + loginUser + '", "Password" : "' + loginPassword + '"}';
     let url = urlBase + '/Login.' + extension;
-
-    // Connect to API.
-    let xhr = new XMLHttpRequest();
-    xhr.open("POST", url, false);
-    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 
     // Hide the button and display spinner.
     button.style.display = "none";
-    let loginForm = document.getElementById("loginForm");
-    loginForm.innerHTML += spinnerHtml;
 
+    password = document.getElementById("password");
+    password.insertAdjacentHTML('afterend', spinnerHtml);
+    window.setTimeout(() => undefined, 100000);
     try {
-        xhr.send(jsonPayload);
-
-        let jsonObject = JSON.parse(xhr.responseText);
-
-        userId = jsonObject.id;
-        if (userId < 1) {
-            throw jsonObject.error;
-        }
-
-        firstName = jsonObject.firstName;
-        lastName = jsonObject.lastName;
-
-        saveCookie();
-
-        document.getElementById("spinnerHtml").style.display = "none";
-        loginForm.innerHTML += `<br/><br/><span> User found. Redirecting to Contact Manager...</span><br/><br/>`;
-
-        // TODO: Create logged in contactManager.html
-        window.setTimeout(() => window.location.href = "contactManager.html", 5000);
+        sendLoginPayload(jsonPayload, url);
     } catch (err) {
-        console.log("error!");
-        document.getElementById("spinnerHtml").style.display = "none";
-        loginForm.innerHTML += `<br/><br/><span> User not found. <span/><br/><span> Please try using another Username/Password. </span><br/><br/>`;
-
-        window.setTimeout(() => location.reload(), 5000);
+        window.setTimeout(() => {
+            document.getElementById("spinnerHtml").style.display = "none";
+            password.insertAdjacentHTML('afterend',`<br/><br/><span> User not found. <span/><br/><span> Please try using another Username/Password. </span>`);
+            window.setTimeout(() => location.reload(), 5000);
+        }, 1000);
     }
 }
 
