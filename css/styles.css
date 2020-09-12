@@ -34,6 +34,7 @@ p {
     color: #FFFFFF;
     font-size: 0.5em;
     opacity: 0.65;
+    #text-align: right;
 }
 
 h1 {
@@ -102,6 +103,7 @@ h2.active {
 
 input[type=button], input[type=submit], input[type=reset]  {
   background-color: #56baed;
+  width: 100%;
   border: none;
   color: white;
   padding: 15px 80px;
@@ -144,7 +146,7 @@ input[type=text] {
   display: inline-block;
   #font-size: 16px;
   #margin: 5px;
-  width: 55%;
+  width: 100%;
   #border: 2px solid #f6f6f6;
 }
 

@@ -1,35 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<link rel="stylesheet" href="css/index.css">
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-		integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-	<title>contacts27 homepage</title>
+    <head>
+        <style>
+            .main {
+                width: 25%;
+                margin: 0px auto;
+            }
+        .link {
+            width: 25%;
+            margin: 0px auto;
+            text-align: right;
+        }
+        .block{
+            display: inline-block;
+        }
+        </style>
+        <link rel="stylesheet" href="css/styles.css">
+            <title>contactslist27 login</title>
+            </head>
+    
+    <body>
+        <h1>contactslist27</h1>
 </head>
 
 <body>
-	<div class="p-3 mb-2 bg-dark text-white">
-		<h4>contacts27</h4>
-	</div>
-	<div class="wrapper">
-		<div id="formContent">
-			<div class="fadeIn first">
-				<p class="title">Sign in to access contacts</p>
-			</div>
-			<form id="loginForm">
-				<input type="text" id="username" class="fadeIn second" name="username" value="Username"
-					onfocus="clearText(this, 'Username')" onblur="regenerateText(this, 'Username')" />
-				<input type="text" id="password" class="fadeIn third" name="password" value="Password"
-					onfocus="clearText(this, 'Password')" onblur="regenerateText(this, 'Password')" />
-				<input type="button" id="enterButton" class="fadeIn fourth" value="enter">
-                    <input type="submit" class="fadeIn fourth" value="create account">
-			</form>
-		</div>
-	</div>
-	</div>
+	
+<div class="main">
+				<p class>sign in to access contacts</p>
+                <div class="form-group">
+                    <input type="username" class="form-control" placeholder="username"></div>
+                        
+                        <div class="form-group pass_show">
+                            <input type="password" class="form-control" placeholder="password">
+                                </div>
+</div>
+                        <div class="link">
+                            <p class>
+                            <a href="">login >></a></p>
+                            </div>
 	<!-- Needs to be ran last so event listeners work correctly. -->
 	<script src="js/index.js"></script>
 </body>
