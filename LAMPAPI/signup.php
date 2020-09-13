@@ -14,7 +14,7 @@
     VALUES ('" . $inData["FirstName"] . "', '" . $inData["LastName"] . "', '" . $inData["Login"] . "', '" . $inData["Password"] . "')";
 
     if ($conn->query($sql) === TRUE) {
-      $retValue = '{firstName":"' . $inData["FirstName"] . '","lastName":"' . $inData["LastName"] . '","Login":"' . $inData["Login"] . '","Password":"' . $inData["Password"] . '","error":""}';
+      $retValue = '{"firstName":"' . $inData["FirstName"] . '","lastName":"' . $inData["LastName"] . '","Login":"' . $inData["Login"] . '","Password":"' . $inData["Password"] . '","error":""}';
   		sendResultInfoAsJson( $retValue );
     } else {
       returnWithError( "SIGN UP FAILED! ");
