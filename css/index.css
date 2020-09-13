@@ -264,3 +264,8 @@ input[type=text]:placeholder {
 #icon {
   width:60%;
 }
+
+/* Fix weird error with modal. */
+.modal-backdrop {
+  z-index: -1;
+}
