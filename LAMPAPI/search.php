@@ -12,8 +12,8 @@
 	}
 	else
 	{
-		$sql = "SELECT FirstName from Contacts where FirstName like '%" . $inData["search"] . "%' and 
-			UserID =". $inData["UserID"];
+		$sql = "SELECT FirstName, LastName from Contacts where FirstName like '%" . $inData["Search"] . "%' or LastName
+			like '%" . $inData["Search"] . "%' and UserID =". $inData["UserID"];
 		$result = $conn->query($sql);
 
 		if ($result->num_rows > 0)
@@ -25,7 +25,7 @@
 					$searchResults .= ",";
 				}
 				$searchCount++;
-				$searchResults .= '"' . $row["FirstName"] . '"';
+				$searchResults .= '"' . $row["FirstName"] . " " .$row["LastName"] . '"';
 			}
 			returnWithInfo($searchResults);
 		}
