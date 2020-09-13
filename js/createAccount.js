@@ -28,9 +28,17 @@ function doSignup() {
                 </button>
             </div>`;
         modalHeader.insertAdjacentHTML('afterend', warningHtml);
-    } else if ( user.length > 16 || password.length > 16 ) {
+    } else if ( user.length > 64 || password.length > 64 ) {
         warningHtml = `<div class="alert alert-warning alert-dismissible fade show" role="alert">
                 Password is too long. Please use no more than 16 characters.
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>`;
+        modalHeader.insertAdjacentHTML('afterend', warningHtml);
+    } else if ( user.length < 8 || password.length < 8 ) {
+        warningHtml = `<div class="alert alert-warning alert-dismissible fade show" role="alert">
+                Password is too short. Please use 8 or more characters.
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
