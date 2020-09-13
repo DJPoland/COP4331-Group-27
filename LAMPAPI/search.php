@@ -12,8 +12,8 @@
 	}
 	else
 	{
-		$sql = "SELECT FirstName, LastName from Contacts where FirstName like '%" . $inData["Search"] . "%' or LastName
-			like '%" . $inData["Search"] . "%' and UserID =". $inData["UserID"];
+		$sql = "SELECT FirstName, LastName from Contacts where (FirstName like '%" . $inData["Search"] . "%' or LastName
+			like '%" . $inData["Search"] . "%') and UserID =". $inData["UserID"];
 		$result = $conn->query($sql);
 
 		if ($result->num_rows > 0)
