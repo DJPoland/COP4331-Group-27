@@ -48,7 +48,7 @@ function doSignup() {
         try {
             sendSignupPayload(jsonPayload, url);
             warningHtml = `<div class="alert alert-success alert-dismissible fade show" role="alert">
-                    Password is too long. Please use no more than 16 characters.
+                    User and password is successfully created.
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
