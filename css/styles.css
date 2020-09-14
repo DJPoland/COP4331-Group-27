@@ -12,6 +12,8 @@ body {
   letter-spacing: 0.75px;
   text-transform: lowercase;
   padding: 20px;
+  width: 25%
+  margin: 0px auto;
 }
 
 a:link {
