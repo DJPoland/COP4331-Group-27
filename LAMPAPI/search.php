@@ -1,7 +1,7 @@
 <?php
     $inData = getRequestInfo();
     $searchResults = "";
-    $searCount = 0;
+    $searchCount = 0;
 
     // localhost, username, password, database
 	$conn = new mysqli("localhost", "cop4331t_Shawn", "Penguin2020$", "cop4331t_shawnmm1_Group27");
