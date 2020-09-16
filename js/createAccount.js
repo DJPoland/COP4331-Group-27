@@ -1,9 +1,9 @@
-document.getElementById('createAccount').addEventListener('click', doSignup);
+window.document.getElementById('createAccount').addEventListener('click', doSignup);
 
 function doSignup() {
-    let user = document.getElementById("createUsername").value;
-    let password = document.getElementById("createPassword").value;
-    let confirmPassword = document.getElementById("createConfirmPassword").value;
+    let user = window.document.getElementById("createUsername").value;
+    let password = window.document.getElementById("createPassword").value;
+    let confirmPassword = window.document.getElementById("createConfirmPassword").value;
     let jsonPayload = '{"Login" : "' + user + '", "Password" : "' + password + '"}';
     let url = urlBase + '/signup.' + extension;
 
