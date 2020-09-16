@@ -12,7 +12,7 @@
 	}
 	else
 	{
-		$sql = "SELECT FirstName, LastName from Contacts where (FirstName like '%" . $inData["Search"] . "%' or LastName
+		$sql = "SELECT FirstName, LastName, Email, Phone from Contacts where (FirstName like '%" . $inData["Search"] . "%' or LastName
 			like '%" . $inData["Search"] . "%') and UserID =". $inData["UserID"];
 		$result = $conn->query($sql);
 
@@ -25,7 +25,7 @@
 					$searchResults .= ",";
 				}
 				$searchCount++;
-				$searchResults .= '"' . $row["FirstName"] . " " .$row["LastName"] . '"';
+				$searchResults .= '{firstName:"' . $row["FirstName"] . '",lastName:"' . $row["LastName"] . '",email:"' . $row["Email"] . '",phone:"' . $row["Phone"] .'"}';
 			}
 			returnWithInfo($searchResults);
 		}
@@ -45,16 +45,16 @@
 		header('Content-type: application/json');
 		echo $obj;
 	}
-	
+
 	function returnWithError( $err )
 	{
 		$retValue = '{"id":0,"firstName":"","lastName":"","error":"' . $err . '"}';
 		sendResultInfoAsJson( $retValue );
 	}
-	
+
 	function returnWithInfo( $searchResults )
 	{
-		$retValue = '{"results":[' . $searchResults . '],"error":""}';
+		$retValue = '{error: "", results:[' . $searchResults . ']}';
 		sendResultInfoAsJson( $retValue );
 	}
 ?>
