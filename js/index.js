@@ -71,34 +71,30 @@ function saveCookie() {
 
 function readCookie() {
 	userId = -1;
-	var data = document.cookie;
-	var splits = data.split(",");
-	for(var i = 0; i < splits.length; i++) 
-	{
-		var thisOne = splits[i].trim();
-		var tokens = thisOne.split("=");
-		if( tokens[0] == "firstName" )
+	let cookieValues = document.cookie.split(",");
+	for (let i = 0; i < splits.length; i++) {
+		let cookie = cookieValues[i].trim();
+		let [key, value] = cookie.split("=");
+		if (key == "firstName")
 		{
-			firstName = tokens[1];
+			firstName = value;
 		}
-		else if( tokens[0] == "lastName" )
+		else if (key == "lastName")
 		{
-			lastName = tokens[1];
+			lastName = value;
 		}
-		else if( tokens[0] == "userId" )
+		else if( key == "userId" )
 		{
-			userId = parseInt( tokens[1].trim() );
+			userId = parseInt( value.trim() );
 		}
 	}
-	
-	if( userId < 0 )
-	{
-		window.location.href = "index.html";
-	}
-	else
-	{
-		document.getElementById("userName").innerHTML = "Logged in as " + firstName + " " + lastName;
-	}
+    // TODO: uncomment when finished with testing.
+	// if( userId < 0 ) {
+	// 	window.location.href = "index.html";
+	// }
+	// else {
+	// 	document.getElementById("userName").innerHTML = "Logged in as " + firstName + " " + lastName;
+	// }
 }
 
 function doLogout() {
