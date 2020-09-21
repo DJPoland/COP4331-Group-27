@@ -10,10 +10,14 @@ function doSearch() {
     let search = window.document.getElementById("textbox").value;
 
 
-    // TODO: Obtain userID from cookie.
+	// TODO: Remov
+	console.log(window.userId);
 
-    // Test using existing ID.
-    let userID = "1";
+	if (!window.userID) {
+		throw "User ID doesn't exist";
+	}
+
+    let userID = window.userId;
     let jsonPayload = '{"Search" : "' + search + '", "UserID" : "' + userID + '"}';
 	try
 	{
@@ -23,14 +27,6 @@ function doSearch() {
                 console.log("Successfully retrieved JSON from search");
                 let jsonObject = JSON.parse( xhr.responseText );
                 console.log(jsonObject);
-				
-				// for (let i=0; i<jsonObject.results.length; i++) {
-				// 	colorList += jsonObject.results[i];
-				// 	if(i < jsonObject.results.length - 1) {
-				// 		colorList += "<br />\r\n";
-				// 	}
-				// }
-				
 			}
 		};
 		xhr.send(jsonPayload);

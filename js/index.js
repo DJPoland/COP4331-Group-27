@@ -22,9 +22,7 @@ function sendLoginPayload(jsonPayload, url) {
     }
     window.firstName = jsonObject.firstName;
     window.lastName = jsonObject.lastName;
-
-    saveCookie();
-
+    window.saveCookie();
     window.setTimeout(() => {
         window.document.getElementById("spinnerHtml").style.display = "none";
         window.password.insertAdjacentHTML('afterend',`<br/><br/><span> User found. Redirecting to Contact Manager...</span>`);
@@ -50,7 +48,6 @@ function doLogin() {
 
     window.password = document.getElementById("password");
     window.password.insertAdjacentHTML('afterend', spinnerHtml);
-    window.setTimeout(() => undefined, 100000);
     try {
         sendLoginPayload(jsonPayload, url);
     } catch (err) {

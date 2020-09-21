@@ -13,22 +13,22 @@ function saveCookie() {
 }
 
 function readCookie() {
-	userId = -1;
+	window.userId = -1;
 	let cookieValues = document.cookie.split(",");
 	for (let i = 0; i < splits.length; i++) {
 		let cookie = cookieValues[i].trim();
 		let [key, value] = cookie.split("=");
 		if (key == "firstName")
 		{
-			firstName = value;
+			window.firstName = value;
 		}
 		else if (key == "lastName")
 		{
-			lastName = value;
+			window.lastName = value;
 		}
 		else if (key == "userId")
 		{
-			userId = parseInt( value.trim() );
+			window.userId = parseInt( value.trim() );
 		}
 	}
     // TODO: uncomment when finished with testing.
