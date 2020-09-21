@@ -15,8 +15,9 @@ function saveCookie() {
 function readCookie() {
 	window.userId = -1;
 	let cookieValues = document.cookie.split(",");
-	for (let i = 0; i < splits.length; i++) {
-		let cookie = cookieValues[i].trim();
+
+	cookieValues.map( cookieValue => {
+		let cookie = cookieValue.trim();
 		let [key, value] = cookie.split("=");
 		if (key == "firstName")
 		{
@@ -30,14 +31,15 @@ function readCookie() {
 		{
 			window.userId = parseInt( value.trim() );
 		}
-	}
+	});
     // TODO: uncomment when finished with testing.
-	// if( userId < 0 ) {
-	// 	window.location.href = "index.html";
-	// }
-	// else {
-	// 	document.getElementById("userName").innerHTML = "Logged in as " + firstName + " " + lastName;
-	// }
+	if( userId < 0 ) {
+		window.location.href = "index.html";
+	}
+	else {
+		console.log("uh oh");
+		// document.getElementById("userName").innerHTML = "Logged in as " + firstName + " " + lastName;
+	}
 }
 
 function doLogout() {
