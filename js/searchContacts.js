@@ -37,48 +37,37 @@ function generateContactCard(contact, idx) {
 	</div>
 	</div>`;
 
-    document.getElementById("cardsPlaceholder").insertAdjacentHTML('beforeend', contactHtml);
+	document.getElementById("cardsPlaceholder").insertAdjacentHTML('beforeend', contactHtml);
 }
 
 function doSearch() {
-    document.getElementById("cardsPlaceholder").innerHTML = '';
+	document.getElementById("cardsPlaceholder").innerHTML = '';
 
-    let xhr = new XMLHttpRequest();
-    let url = window.urlBase + '/search.' + window.extension;
-    xhr.open("POST", url, true);
-    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-
-    let search = window.document.getElementById("textbox").value;
-
-	// TODO: Remove once confirmed cookies work as expected.
-	console.log(window.userId);
-
+	let xhr = new XMLHttpRequest();
+	let url = window.urlBase + '/search.' + window.extension;
+	xhr.open("POST", url, true);
+	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 	if (!window.userId) {
 		throw "User ID doesn't exist";
 	}
-
-    let userID = window.userId;
-    let jsonPayload = '{"Search" : "' + search + '", "UserID" : "' + userID + '"}';
-	try
-	{
-		xhr.onreadystatechange = function() 
-		{
+	let search = window.document.getElementById("textbox").value;
+	let userID = window.userId;
+	let jsonPayload = '{"Search" : "' + search + '", "UserID" : "' + userID + '"}';
+	try {
+		xhr.onreadystatechange = function () {
 			if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
-                console.log("Successfully retrieved JSON from search");
-				let jsonObject = JSON.parse( xhr.responseText );
-				// If results array doesn't exist, then don't do anything.
+				let jsonObject = JSON.parse(xhr.responseText);
 				if (!jsonObject.results) {
 					return;
 				}
-				jsonObject.results.map( (obj, idx) => {
+				jsonObject.results.map((obj, idx) => {
 					generateContactCard(obj, idx);
 				});
 			}
 		};
 		xhr.send(jsonPayload);
 	}
-	catch(err)
-	{
+	catch (err) {
 		console.log("Theres an error!:" + err);
 
 		// TODO: Warn that there's an error.

@@ -25,8 +25,8 @@ function sendLoginPayload(jsonPayload, url) {
     window.saveCookie();
     window.setTimeout(() => {
         window.document.getElementById("spinnerHtml").style.display = "none";
-        window.password.insertAdjacentHTML('afterend',`<br/><br/><span> User found. Redirecting to Contact Manager...</span>`);
-        window.setTimeout(() => window.location.href = "contactManager.html" , 5000);
+        window.password.insertAdjacentHTML('afterend', `<br/><br/><span> User found. Redirecting to Contact Manager...</span>`);
+        window.setTimeout(() => window.location.href = "contactManager.html", 5000);
     }, 1000);
 }
 
@@ -53,7 +53,7 @@ function doLogin() {
     } catch (err) {
         window.setTimeout(() => {
             window.document.getElementById("spinnerHtml").style.display = "none";
-            window.password.insertAdjacentHTML('afterend',`<br/><br/><span> User not found. <span/><br/><span> Please try using another Username/Password. </span>`);
+            window.password.insertAdjacentHTML('afterend', `<br/><br/><span> User not found. <span/><br/><span> Please try using another Username/Password. </span>`);
             window.setTimeout(() => location.reload(), 5000);
         }, 1000);
     }
