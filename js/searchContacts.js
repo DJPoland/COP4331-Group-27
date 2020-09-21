@@ -1,9 +1,16 @@
 readCookie();
-window.document.getElementById('searchContact').addEventListener('click', doSearch);
-window.document.getElementById('insertP').insertAdjacentHTML('beforeend', `<p>Logged in as: <b>${window.firstName} ${window.lastName}</b></p>`);
+window.document
+  .getElementById("searchContact")
+  .addEventListener("click", doSearch);
+window.document
+  .getElementById("insertP")
+  .insertAdjacentHTML(
+    "beforeend",
+    `<p>Logged in as: <b>${window.firstName} ${window.lastName}</b></p>`
+  );
 
 function generateContactCard(contact, idx) {
-	let contactHtml = `<div id="contact${idx}" class="col mb-4">
+  let contactHtml = `<div id="contact${idx}" class="col mb-4">
 	<div class="card">
 	<button id="deleteButton${idx}" type="button" class="close deleteButton" data-dismiss="modal" aria-label="Close">
 	<span aria-hidden="true">&times;</span>
@@ -37,41 +44,45 @@ function generateContactCard(contact, idx) {
 	</div>
 	</div>`;
 
-	document.getElementById("cardsPlaceholder").insertAdjacentHTML('beforeend', contactHtml);
+  window.document
+    .getElementById("cardsPlaceholder")
+    .insertAdjacentHTML("beforeend", contactHtml);
+  window.document.getElementById(`deleteButton${idx}`).onclick = function () {
+    window.doDelete(idx);
+  };
 }
 
 function doSearch() {
-	document.getElementById("cardsPlaceholder").innerHTML = '';
+  window.document.getElementById("cardsPlaceholder").innerHTML = "";
 
-	let xhr = new XMLHttpRequest();
-	let url = window.urlBase + '/search.' + window.extension;
-	xhr.open("POST", url, true);
-	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-	if (!window.userId) {
-		throw "User ID doesn't exist";
-	}
-	let search = window.document.getElementById("textbox").value;
-	let userID = window.userId;
-	let jsonPayload = '{"Search" : "' + search + '", "UserID" : "' + userID + '"}';
-	try {
-		xhr.onreadystatechange = function () {
-			if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
-				let jsonObject = JSON.parse(xhr.responseText);
-				if (!jsonObject.results) {
-					return;
-				}
-				jsonObject.results.map((obj, idx) => {
-					generateContactCard(obj, idx);
-				});
-			}
-		};
-		xhr.send(jsonPayload);
-	}
-	catch (err) {
-		console.log("Theres an error!:" + err);
+  let xhr = new XMLHttpRequest();
+  let url = window.urlBase + "/search." + window.extension;
+  xhr.open("POST", url, true);
+  xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+  if (!window.userId) {
+    throw "User ID doesn't exist";
+  }
+  let search = window.document.getElementById("textbox").value;
+  let userID = window.userId;
+  let jsonPayload =
+    '{"Search" : "' + search + '", "UserID" : "' + userID + '"}';
+  try {
+    xhr.onreadystatechange = function () {
+      if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
+        let jsonObject = JSON.parse(xhr.responseText);
+        if (!jsonObject.results) {
+          return;
+        }
+        window.numberOfCards = jsonObject.results.length;
+        jsonObject.results.map((obj, idx) => {
+          generateContactCard(obj, idx);
+        });
+      }
+    };
+    xhr.send(jsonPayload);
+  } catch (err) {
+    console.log("Theres an error!:" + err);
 
-		// TODO: Warn that there's an error.
-
-	}
+    // TODO: Warn that there's an error.
+  }
 }
-
