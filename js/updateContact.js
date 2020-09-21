@@ -3,9 +3,9 @@
 // Disable edit contact and enable update contact,
 // then send form information when "update contact" is clicked.
 
-function doUpdate() {
+function doUpdate(idx) {
   let xhr = new XMLHttpRequest();
   let url = window.urlBase + "/update." + window.extension;
-  xhr.open("POST", url, true);
+  xhr.open("POST", url, false);
   xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 }

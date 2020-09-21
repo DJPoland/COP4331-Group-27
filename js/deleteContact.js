@@ -24,5 +24,7 @@ function doDelete(index) {
     '"}';
 
   xhr.send(jsonPayload);
-  console.log(xhr.responseText);
+
+  // TODO: Implement error handling
+  window.doSearch();
 }

@@ -50,6 +50,12 @@ function generateContactCard(contact, idx) {
   window.document.getElementById(`deleteButton${idx}`).onclick = function () {
     window.doDelete(idx);
   };
+  window.document.getElementById(`updateContact${idx}`).onclick = function () {
+    window.doUpdate(idx);
+  };
+  window.document.getElementById(`editContact${idx}`).onclick = function () {
+    window.doEdit(idx);
+  };
 }
 
 function doSearch() {
@@ -85,4 +91,13 @@ function doSearch() {
 
     // TODO: Warn that there's an error.
   }
+}
+
+function doEdit(idx) {
+  window.document.getElementById(`name${idx}`).removeAttribute("disabled");
+  window.document.getElementById(`email${idx}`).removeAttribute("disabled");
+  window.document.getElementById(`phone${idx}`).removeAttribute("disabled");
+  window.document
+    .getElementById(`updateContact${idx}`)
+    .classList.remove("disabled");
 }
