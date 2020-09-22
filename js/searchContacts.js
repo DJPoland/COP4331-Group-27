@@ -9,6 +9,8 @@ window.document
     `<p>Logged in as: <b>${window.firstName} ${window.lastName}</b></p>`
   );
 
+window.cardsArray = [];
+
 function generateContactCard(contact, idx) {
   let contactHtml = `<div id="contact${idx}" class="col mb-4">
 	<div class="card">
@@ -56,10 +58,13 @@ function generateContactCard(contact, idx) {
   window.document.getElementById(`editContact${idx}`).onclick = function () {
     window.doEdit(idx);
   };
+
+  window.cardsArray.push(contact.ID);
 }
 
 function doSearch() {
   window.document.getElementById("cardsPlaceholder").innerHTML = "";
+  window.cardsArray = [];
 
   let xhr = new XMLHttpRequest();
   let url = window.urlBase + "/search." + window.extension;
