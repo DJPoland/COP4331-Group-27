@@ -1,9 +1,18 @@
 readCookie();
-window.document.getElementById('searchContact').addEventListener('click', doSearch);
-window.document.getElementById('insertP').insertAdjacentHTML('beforeend', `<p>Logged in as: <b>${window.firstName} ${window.lastName}</b></p>`);
+window.document
+  .getElementById("searchContact")
+  .addEventListener("click", doSearch);
+window.document
+  .getElementById("insertP")
+  .insertAdjacentHTML(
+    "beforeend",
+    `<p>Logged in as: <b>${window.firstName} ${window.lastName}</b></p>`
+  );
+
+window.cardsArray = [];
 
 function generateContactCard(contact, idx) {
-	let contactHtml = `<div id="contact${idx}" class="col mb-4">
+  let contactHtml = `<div id="contact${idx}" class="col mb-4">
 	<div class="card">
 	<button id="deleteButton${idx}" type="button" class="close deleteButton" data-dismiss="modal" aria-label="Close">
 	<span aria-hidden="true">&times;</span>
@@ -37,52 +46,63 @@ function generateContactCard(contact, idx) {
 	</div>
 	</div>`;
 
-    document.getElementById("cardsPlaceholder").insertAdjacentHTML('beforeend', contactHtml);
+  window.document
+    .getElementById("cardsPlaceholder")
+    .insertAdjacentHTML("beforeend", contactHtml);
+  window.document.getElementById(`deleteButton${idx}`).onclick = function () {
+    window.doDelete(idx);
+  };
+  window.document.getElementById(`updateContact${idx}`).onclick = function () {
+    window.doUpdate(idx);
+  };
+  window.document.getElementById(`editContact${idx}`).onclick = function () {
+    window.doEdit(idx);
+  };
+
+  window.cardsArray.push(contact.ID);
 }
 
 function doSearch() {
-    document.getElementById("cardsPlaceholder").innerHTML = '';
+  window.document.getElementById("cardsPlaceholder").innerHTML = "";
+  window.cardsArray = [];
 
-    let xhr = new XMLHttpRequest();
-    let url = window.urlBase + '/search.' + window.extension;
-    xhr.open("POST", url, true);
-    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+  let xhr = new XMLHttpRequest();
+  let url = window.urlBase + "/search." + window.extension;
+  xhr.open("POST", url, true);
+  xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+  if (!window.userId) {
+    throw "User ID doesn't exist";
+  }
+  let search = window.document.getElementById("textbox").value;
+  let userID = window.userId;
+  let jsonPayload =
+    '{"Search" : "' + search + '", "UserID" : "' + userID + '"}';
+  try {
+    xhr.onreadystatechange = function () {
+      if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
+        let jsonObject = JSON.parse(xhr.responseText);
+        if (!jsonObject.results) {
+          return;
+        }
+        window.numberOfCards = jsonObject.results.length;
+        jsonObject.results.map((obj, idx) => {
+          generateContactCard(obj, idx);
+        });
+      }
+    };
+    xhr.send(jsonPayload);
+  } catch (err) {
+    console.log("Theres an error!:" + err);
 
-    let search = window.document.getElementById("textbox").value;
-
-	// TODO: Remove once confirmed cookies work as expected.
-	console.log(window.userId);
-
-	if (!window.userId) {
-		throw "User ID doesn't exist";
-	}
-
-    let userID = window.userId;
-    let jsonPayload = '{"Search" : "' + search + '", "UserID" : "' + userID + '"}';
-	try
-	{
-		xhr.onreadystatechange = function() 
-		{
-			if (this.readyState == XMLHttpRequest.DONE && this.status == 200) {
-                console.log("Successfully retrieved JSON from search");
-				let jsonObject = JSON.parse( xhr.responseText );
-				// If results array doesn't exist, then don't do anything.
-				if (!jsonObject.results) {
-					return;
-				}
-				jsonObject.results.map( (obj, idx) => {
-					generateContactCard(obj, idx);
-				});
-			}
-		};
-		xhr.send(jsonPayload);
-	}
-	catch(err)
-	{
-		console.log("Theres an error!:" + err);
-
-		// TODO: Warn that there's an error.
-
-	}
+    // TODO: Warn that there's an error.
+  }
 }
 
+function doEdit(idx) {
+  window.document.getElementById(`name${idx}`).removeAttribute("disabled");
+  window.document.getElementById(`email${idx}`).removeAttribute("disabled");
+  window.document.getElementById(`phone${idx}`).removeAttribute("disabled");
+  window.document
+    .getElementById(`updateContact${idx}`)
+    .classList.remove("disabled");
+}
