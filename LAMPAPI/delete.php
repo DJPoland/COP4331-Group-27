@@ -1,6 +1,7 @@
 <?php
 	$inData = getRequestInfo();
 	$id = $inData["UserID"];
+	$contactId = $inData["ID"];
 	$firstName = $inData["FirstName"];
 	$lastName = $inData["LastName"];
 
@@ -14,7 +15,7 @@
 	else
 	{
 		$sql = "DELETE from Contacts where FirstName ='". $firstName ."' and LastName ='" . 
-			$lastName . "' and UserID ='". $id. "'";
+			$lastName . "' and ID ='".$contactId."' and UserID ='". $id. "'";
 		if( $result = $conn->query($sql) != TRUE )
 		{
 			returnWithError( $conn->error );
