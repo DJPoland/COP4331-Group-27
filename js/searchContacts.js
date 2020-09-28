@@ -1,14 +1,18 @@
+// This should probably be moved to Util/globals, but i'll keep it here for now.
 readCookie();
+
 window.document
   .getElementById("searchContact")
   .addEventListener("click", doSearch);
+window.document
+  .getElementById("logoutBtn")
+  .addEventListener("click", doLogout);
 window.document
   .getElementById("insertP")
   .insertAdjacentHTML(
     "beforeend",
     `<p>Logged in as: <b>${window.firstName} ${window.lastName}</b></p>`
   );
-
 window.cardsArray = [];
 
 function generateContactCard(contact, idx) {

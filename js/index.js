@@ -1,12 +1,4 @@
-window.urlBase = "http://contactlist27.com/LAMPAPI";
-window.extension = "php";
-window.userId = 0;
-window.firstName = "";
-window.lastName = "";
-window.password = undefined;
 window.button = document.getElementById("enterButton");
-
-// Attach event listener to enter button.
 window.button.addEventListener("click", doLogin);
 
 function sendLoginPayload(jsonPayload, url) {

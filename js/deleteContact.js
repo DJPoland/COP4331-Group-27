@@ -1,8 +1,3 @@
-// TODO: Connect to delete API and update UI accordingly.
-
-// Go to parent from clicked button that has class "deleteButton",
-// and delete the associated ID.
-
 function doDelete(index) {
   let xhr = new XMLHttpRequest();
   let url = window.urlBase + "/delete." + window.extension;

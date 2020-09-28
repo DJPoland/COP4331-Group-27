@@ -1,9 +1,6 @@
-// TODO: Connect to create API and update UI accordingly.
 window.document
   .getElementById("createContact")
   .addEventListener("click", doCreateContact);
-
-// Create contact with modal. ez
 
 function doCreateContact() {
   let xhr = new XMLHttpRequest();

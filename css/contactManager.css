@@ -1,3 +1,7 @@
+#logoutBtn {
+    margin-left: 0;
+}
+
 .btn {
     margin-left: 20px;
     margin-bottom: 10px;
@@ -8,7 +12,7 @@
     max-width: unset;
 }
 
-.blahblah {
+.createContact {
     position: absolute;
     top: 10px;
     right: 10px;
