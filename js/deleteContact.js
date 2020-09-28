@@ -21,6 +21,8 @@ function doDelete(index) {
     lastName +
     '", "UserID" : "' +
     window.userId +
+    '", "ID" : "' +
+    window.cardsArray[index] +
     '"}';
 
   xhr.send(jsonPayload);
