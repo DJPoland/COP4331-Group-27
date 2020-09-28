@@ -73,7 +73,7 @@ function doSearch() {
   if (!window.userId) {
     throw "User ID doesn't exist";
   }
-  let search = window.document.getElementById("textbox").value;
+  let search = window.document.getElementById("textbox").value.trim();
   let userID = window.userId;
   let jsonPayload =
     '{"Search" : "' + search + '", "UserID" : "' + userID + '"}';

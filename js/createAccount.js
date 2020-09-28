@@ -4,7 +4,7 @@ window.document
 
 function doSignup() {
   let user = window.document.getElementById("createUsername").value;
-  let password = window.document.getElementById("createPassword").value;
+  let password = md5(window.document.getElementById("createPassword").value);
   let confirmPassword = window.document.getElementById("createConfirmPassword")
     .value;
   let jsonPayload =

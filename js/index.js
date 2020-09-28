@@ -42,9 +42,8 @@ function doLogin() {
   window.lastName = "";
 
   let spinnerHtml = `<br/><br/><div id="spinnerHtml"><div class="spinner-border" role="status"></div><br/><span>Verifying...</span><br/><br/></div>`;
-  let loginUser = document.getElementById("username").value;
-  let loginPassword = document.getElementById("password").value;
-  // TODO: Implement hashing....
+  let loginUser = document.getElementById("username").value.trim();
+  let loginPassword = md5(document.getElementById("password").value.trim());
   let jsonPayload =
     '{"Login" : "' + loginUser + '", "Password" : "' + loginPassword + '"}';
   let url = window.urlBase + "/Login." + window.extension;
