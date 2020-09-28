@@ -3,10 +3,10 @@ window.document
   .addEventListener("click", doSignup);
 
 function doSignup() {
-  let user = window.document.getElementById("createUsername").value;
-  let password = window.document.getElementById("createPassword").value;
+  let user = window.document.getElementById("createUsername").value.trim();
+  let password = window.document.getElementById("createPassword").value.trim();
   let confirmPassword = window.document.getElementById("createConfirmPassword")
-    .value;
+    .value.trim();
   let jsonPayload =
     '{"Login" : "' + user + '", "Password" : "' + md5(password) + '"}';
   let url = urlBase + "/signup." + extension;
@@ -19,10 +19,10 @@ function doSignup() {
                 <span aria-hidden="true">&times;</span>
                 </button>
             </div>`);
-  } else if (user.length > 64 || password.length > 64) {
+  } else if (user.length > 16 || password.length > 16) {
     createModalWithMessage(`
             <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                Password is too long. Please use no more than 16 characters.
+                Username or Password is too long. Please use no more than 16 characters.
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
@@ -30,7 +30,7 @@ function doSignup() {
   } else if (user.length < 8 || password.length < 8) {
     createModalWithMessage(`
             <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                Password is too short. Please use 8 or more characters.
+                Username or Password is too short. Please use 8 or more characters.
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
