@@ -4,11 +4,22 @@ window.document
 
 function doSignup() {
   let user = window.document.getElementById("createUsername").value.trim();
+  let firstName = window.document.getElementById("createFirstName").value.trim();
+  let lastName = window.document.getElementById("createLastName").value.trim();
   let password = window.document.getElementById("createPassword").value.trim();
-  let confirmPassword = window.document.getElementById("createConfirmPassword")
+  let confirmPassword = window.document
+    .getElementById("createConfirmPassword")
     .value.trim();
   let jsonPayload =
-    '{"Login" : "' + user + '", "Password" : "' + md5(password) + '"}';
+    '{"Login" : "' +
+    user +
+    '", "Password" : "' +
+    md5(password) +
+    '", "FirstName" : "' +
+    firstName +
+    '", "LastName" : "' +
+    lastName +
+    '"}';
   let url = urlBase + "/signup." + extension;
 
   if (password !== confirmPassword) {
