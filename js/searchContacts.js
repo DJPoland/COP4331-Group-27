@@ -59,7 +59,7 @@ function generateContactCard(contact, idx) {
           </button>
       </div>
       <div class="modal-body">
-          <p>By clicking confirm, you will permanently delete this contact.</p>
+          <p class="colorBlack">By clicking confirm, you will permanently delete this contact.</p>
       </div>
       <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

@@ -63,3 +63,7 @@ p {
   width: calc(50% - 4px);
   margin: 0 auto;
 }
+
+.colorBlack {
+    color: black;
+}
