@@ -24,7 +24,9 @@ h2 {
   color: #cccccc;
 }
 
-
+#password {
+  -webkit-text-security: disc;
+}
 
 /* STRUCTURE */
 

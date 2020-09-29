@@ -9,12 +9,13 @@ function doUpdate(index) {
   xhr.open("POST", url, false);
   xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
 
-  let [firstName, lastName] = window.document
-    .getElementById(`name${index}`)
-    .value.trim()
-    .split(" ");
-  let phone = window.document.getElementById(`phone${index}`).value.trim();
-  let email = window.document.getElementById(`email${index}`).value.trim();
+  let name = window.document.getElementById(`name${index}`).value.trim() || getPlaceholderValue(index, "name");
+  let phone = window.document.getElementById(`phone${index}`).value.trim() || getPlaceholderValue(index, "phone");
+  let email = window.document.getElementById(`email${index}`).value.trim() || getPlaceholderValue(index, "email");
+
+
+  let [firstName, lastName] = name.split(" ");
+  lastName = isEmpty(lastName) ? "" : lastName;
   let jsonPayload =
     '{"FirstName" : "' +
     firstName +
@@ -29,7 +30,9 @@ function doUpdate(index) {
     '"}';
 
   xhr.send(jsonPayload);
-  console.log(xhr.responseText);
-
   window.doSearch();
+}
+
+function getPlaceholderValue(index, type) {
+  return window.document.getElementById(`${type}${index}`);
 }

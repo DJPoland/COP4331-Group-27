@@ -1,5 +1,5 @@
 // This should probably be moved to Util/globals, but i'll keep it here for now.
-readCookie();
+// readCookie();
 
 window.document
   .getElementById("searchContact")
