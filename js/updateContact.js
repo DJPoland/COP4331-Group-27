@@ -34,5 +34,5 @@ function doUpdate(index) {
 }
 
 function getPlaceholderValue(index, type) {
-  return window.document.getElementById(`${type}${index}`);
+  return window.document.getElementById(`${type}${index}`).getAttribute("placeholder");
 }

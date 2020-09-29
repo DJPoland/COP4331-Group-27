@@ -44,7 +44,7 @@ function doCreateContact() {
   if (isEmpty(xhr.responseText)) {
     createModalWithMessage(`
         <div class="alert alert-success alert-dismissible fade show" role="alert">
-            Contact Sucessfully Created. 
+            Contact successfully created. 
             The contact can now be searched. 
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
