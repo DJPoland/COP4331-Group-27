@@ -1,20 +1,24 @@
+// This should probably be moved to Util/globals, but i'll keep it here for now.
 readCookie();
+
 window.document
   .getElementById("searchContact")
   .addEventListener("click", doSearch);
+window.document
+  .getElementById("logoutBtn")
+  .addEventListener("click", doLogout);
 window.document
   .getElementById("insertP")
   .insertAdjacentHTML(
     "beforeend",
     `<p>Logged in as: <b>${window.firstName} ${window.lastName}</b></p>`
   );
-
 window.cardsArray = [];
 
 function generateContactCard(contact, idx) {
   let contactHtml = `<div id="contact${idx}" class="col mb-4">
 	<div class="card">
-	<button id="deleteButton${idx}" type="button" class="close deleteButton" data-dismiss="modal" aria-label="Close">
+	<button href="#model${idx}" type="button" class="close deleteButton noSelect" data-toggle="modal" data-target="#model${idx}" aria-label="Close">
 	<span aria-hidden="true">&times;</span>
 	</button>
 		<div class="card-body">
@@ -40,11 +44,31 @@ function generateContactCard(contact, idx) {
 			</form>
 		</div>
 		<div>
-			<a id="editContact${idx}" href="#" class="btn btn-primary btn-lg center" tabindex="-1" role="button" aria-disabled="true">Edit Contact</a>
-			<a id="updateContact${idx}" href="#" class="btn btn-secondary btn-lg disabled center" tabindex="-1" role="button" aria-disabled="true">Update Contact</a>
+			<a id="editContact${idx}" href="#" class="btn btn-primary btn-lg" tabindex="-1" role="button" aria-disabled="true">Edit Contact</a>
+			<a id="updateContact${idx}" href="#" class="btn btn-secondary btn-lg disabled" tabindex="-1" role="button" aria-disabled="true">Update Contact</a>
 		</div>
 	</div>
-	</div>`;
+  </div>
+  <div id="model${idx}" class="modal center" tabindex="-1">
+  <div class="modal-dialog">
+      <div class="modal-content">
+      <div class="modal-header">
+          <h5 class="modal-title">Are You Sure?</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+          </button>
+      </div>
+      <div class="modal-body">
+          <p class="colorBlack">By clicking confirm, you will permanently delete this contact.</p>
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button id="deleteButton${idx}" type="button" class="btn btn-primary" data-dismiss="modal">Confirm</button>
+      </div>
+      </div>
+  </div>
+  </div>
+  `;
 
   window.document
     .getElementById("cardsPlaceholder")
@@ -73,7 +97,7 @@ function doSearch() {
   if (!window.userId) {
     throw "User ID doesn't exist";
   }
-  let search = window.document.getElementById("textbox").value;
+  let search = window.document.getElementById("textbox").value.trim();
   let userID = window.userId;
   let jsonPayload =
     '{"Search" : "' + search + '", "UserID" : "' + userID + '"}';

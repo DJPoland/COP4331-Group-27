@@ -35,7 +35,6 @@ function readCookie() {
       window.userId = parseInt(value.trim());
     }
   });
-  // TODO: uncomment when finished with testing.
   if (userId < 0) {
     window.location.href = "index.html";
   }

@@ -5,6 +5,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap stuff -->
+    <style>
+        body {
+            background-image: url("background-picture.jpg");
+        }
+    </style>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="css/contactManager.css">
@@ -23,11 +28,14 @@
 
 <body>
     <div class="p-3 mb-2 bg-dark text-white">
+        <div class="buttons">
+            <a href="#staticBackdrop" class="btn btn-primary btn-lg action_btn" tabindex="-1" role="button"
+                aria-disabled="true" data-toggle="modal" data-target="#staticBackdrop">Create Contact</a>
+            <a id="logoutBtn" class="btn btn-primary btn-lg action_btn" role="button" aria-disabled="true">Logout</a>
+        </div>
         <h4>contacts27</h4>
         <div id="insertP">
         </div>
-        <a href="#staticBackdrop" class="btn btn-primary btn-lg center blahblah" tabindex="-1" role="button"
-            aria-disabled="true" data-toggle="modal" data-target="#staticBackdrop">Create Contact</a>
     </div>
     <div id="wrapper" class="container">
         <p>Search through contacts</p>

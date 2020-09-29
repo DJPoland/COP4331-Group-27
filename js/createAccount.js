@@ -3,12 +3,23 @@ window.document
   .addEventListener("click", doSignup);
 
 function doSignup() {
-  let user = window.document.getElementById("createUsername").value;
-  let password = window.document.getElementById("createPassword").value;
-  let confirmPassword = window.document.getElementById("createConfirmPassword")
-    .value;
+  let user = window.document.getElementById("createUsername").value.trim();
+  let firstName = window.document.getElementById("createFirstName").value.trim();
+  let lastName = window.document.getElementById("createLastName").value.trim();
+  let password = window.document.getElementById("createPassword").value.trim();
+  let confirmPassword = window.document
+    .getElementById("createConfirmPassword")
+    .value.trim();
   let jsonPayload =
-    '{"Login" : "' + user + '", "Password" : "' + password + '"}';
+    '{"Login" : "' +
+    user +
+    '", "Password" : "' +
+    md5(password) +
+    '", "FirstName" : "' +
+    firstName +
+    '", "LastName" : "' +
+    lastName +
+    '"}';
   let url = urlBase + "/signup." + extension;
 
   if (password !== confirmPassword) {
@@ -19,10 +30,10 @@ function doSignup() {
                 <span aria-hidden="true">&times;</span>
                 </button>
             </div>`);
-  } else if (user.length > 64 || password.length > 64) {
+  } else if (user.length > 16 || password.length > 16) {
     createModalWithMessage(`
             <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                Password is too long. Please use no more than 16 characters.
+                Username or Password is too long. Please use no more than 16 characters.
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
@@ -30,7 +41,7 @@ function doSignup() {
   } else if (user.length < 8 || password.length < 8) {
     createModalWithMessage(`
             <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                Password is too short. Please use 8 or more characters.
+                Username or Password is too short. Please use 8 or more characters.
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
@@ -40,7 +51,7 @@ function doSignup() {
       sendSignupPayload(jsonPayload, url);
       createModalWithMessage(`
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    User and password is successfully created.
+                    Account Successfully Created.
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
