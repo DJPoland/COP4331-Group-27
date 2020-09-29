@@ -10,6 +10,7 @@ Includes all the standard features in a LAMP stack such as:
 * Backend written in PHP
 * Database with MySQL
 * Supports various frontend-backend interactions such as:
+
   * Login
   * Register
   * Create contact
