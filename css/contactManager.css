@@ -2,6 +2,10 @@
     margin-left: 0;
 }
 
+#insertP {
+    margin-bottom: 16px;
+}
+
 .btn {
     margin-left: 20px;
     margin-bottom: 10px;
@@ -20,6 +24,8 @@
 
 p {
     margin-top: 20px;
+    color: white;
+    margin-bottom: 0;
 }
 
 .moveDown {
@@ -28,4 +34,32 @@ p {
 
 .text-right {
     margin-top: 10px;
+}
+
+.center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.noSelect {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.buttons {
+  width: 300px;
+  margin: 0 auto;
+  float: right;
+}
+
+.action_btn {
+  display: inline-block;
+  width: calc(50% - 4px);
+  margin: 0 auto;
 }
